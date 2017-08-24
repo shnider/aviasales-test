@@ -6,7 +6,6 @@ import data from './ticket.json';
 
 import Ticket from './Components/Ticket';
 
-
 class App extends Component {
   state = {};
 
