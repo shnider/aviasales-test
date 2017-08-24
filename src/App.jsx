@@ -5,6 +5,7 @@ import sort from './utils';
 import data from './ticket.json';
 
 import Ticket from './Components/Ticket';
+import Filters from './Components/Filters';
 
 class App extends Component {
   state = {};
@@ -14,6 +15,7 @@ class App extends Component {
     const sortedTickets = sort(tickets);
     return (
       <div className="App">
+        <Filters />
         {sortedTickets.map(ticket =>
           (<Ticket
             price={ticket.price}
