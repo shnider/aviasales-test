@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import sort from './utils';
+import { sortByValue, getStops } from './utils';
+
 // ticket data from json
 import data from './ticket.json';
 
@@ -8,14 +10,25 @@ import Ticket from './Components/Ticket';
 import Filters from './Components/Filters';
 
 class App extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = { unchecked: {} };
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState(config) {
+    this.setState(config);
+  }
 
   render() {
     const { tickets = [] } = data;
-    const sortedTickets = sort(tickets);
+    const { unchecked } = this.state;
+    const stops = getStops(tickets);
+    const sortedTickets = sortByValue(tickets);
+
     return (
       <div className="App">
-        <Filters />
+        <Filters updateState={this.updateState} stops={stops} unchecked={unchecked} />
         {sortedTickets.map(ticket =>
           (<Ticket
             price={ticket.price}
