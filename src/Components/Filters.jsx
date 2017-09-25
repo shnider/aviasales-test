@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import { arrayToObject } from '../utils';
+
 class Filters extends Component {
   handleChange = (e) => {
-    const { unchecked, updateState } = this.props;
+    const { unchecked, stops, isAllStops, updateState } = this.props;
     const name = e.target.name;
     if (name === 'ALL') {
-      const newObj = {};
-      updateState({ unchecked: newObj });
+      const newObj = isAllStops ? arrayToObject(stops, true) : {};
+      updateState({ unchecked: newObj, isAllStops: !isAllStops });
     } else if (name in unchecked) {
       const { [name]: omit, ...newObj } = unchecked;
       const isAllActive = Object.keys(newObj).length === 0 || false;

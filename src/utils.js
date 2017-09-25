@@ -10,3 +10,8 @@ export const getStops = (array) => {
     allStops.indexOf(iter) === index
   )).sort();
 };
+
+// convert array to object with the same value 
+export const arrayToObject = (array, value) => (
+  Object.assign(...array.map(key => ({ [key]: value })))
+);
