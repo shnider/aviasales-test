@@ -12,7 +12,10 @@ import Filters from './Components/Filters';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { unchecked: {} };
+    this.state = {
+      unchecked: {},
+      isAllStops: true,
+    };
     this.updateState = this.updateState.bind(this);
   }
 
@@ -22,13 +25,18 @@ class App extends Component {
 
   render() {
     const { tickets = [] } = data;
-    const { unchecked } = this.state;
+    const { unchecked, isAllStops } = this.state;
     const stops = getStops(tickets);
     const sortedTickets = sortByValue(tickets);
 
     return (
       <div className="App">
-        <Filters updateState={this.updateState} stops={stops} unchecked={unchecked} />
+        <Filters
+          updateState={this.updateState}
+          stops={stops}
+          unchecked={unchecked}
+          isAllStops={isAllStops}
+        />
         {sortedTickets.map(ticket =>
           (<Ticket
             price={ticket.price}
