@@ -37,14 +37,16 @@ class App extends Component {
           unchecked={unchecked}
           isAllStops={isAllStops}
         />
-        {sortedTickets.map(ticket =>
-          (<Ticket
-            price={ticket.price}
-            origin={ticket.origin_name}
-            destination={ticket.destination_name}
-            stops={ticket.stops}
-          />),
-        )}
+        <div className="Tickets">
+          {sortedTickets.map(ticket =>
+            (<Ticket
+              price={ticket.price}
+              origin={ticket.origin_name}
+              destination={ticket.destination_name}
+              stops={ticket.stops}
+            />),
+          )}
+        </div>
       </div>
     );
   }
