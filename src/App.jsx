@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import { sortByValue, getStops } from './utils';
+import { sortByValue, getStops, filterTickets } from './utils';
 
 // ticket data from json
 import data from './ticket.json';
@@ -27,7 +27,9 @@ class App extends Component {
     const { tickets = [] } = data;
     const { unchecked, isAllStops } = this.state;
     const stops = getStops(tickets);
+    const filters = Object.keys(unchecked);
     const sortedTickets = sortByValue(tickets);
+    const result = filterTickets(sortedTickets, filters);
 
     return (
       <div className="App">
@@ -38,7 +40,8 @@ class App extends Component {
           isAllStops={isAllStops}
         />
         <div className="Tickets">
-          {sortedTickets.map(ticket =>
+          {result.length === 0 && <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
+          {result.map(ticket =>
             (<Ticket
               price={ticket.price}
               origin={ticket.origin_name}

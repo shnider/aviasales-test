@@ -15,3 +15,7 @@ export const getStops = (array) => {
 export const arrayToObject = (array, value) => (
   Object.assign(...array.map(key => ({ [key]: value })))
 );
+
+export const filterTickets = (tickets, filters) => (
+  tickets.filter(ticket => filters.indexOf(String(ticket.stops)) === -1)
+);
