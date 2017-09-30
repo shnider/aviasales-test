@@ -21,32 +21,45 @@ const Heading = styled.h2`
   color: #4A4A4A;
 `;
 
-const Label = styled.label`
-  display: block;
-  margin-left: 1rem;
-  font-family: "Open Sans";
-  font-size: 13px;
-  line-height: 2.2rem;
-  font-style: normal;
-  font-weight: normal;
-  color: #4A4A4A;
-`;
+const Checkbox = styled.p` 
+  margin: 0;
+  padding: 0rem 1rem;
 
-const Checkbox = styled.span`
-  display: inline-block;
-  box-sizing: border-box;
-  margin-right: 0.7rem;
-`;
+  > input { display: none; }
 
-const CheckboxFace = styled.span`
-  display: inline-block;
-  margin-bottom: -5px;
-  box-sizing: border-box;
-  width: 19px;
-  height: 19px;
-  border: 1px solid #D2D5D6;
-  border-radius: 3px;
-  cursor:pointer;
+  > input + label {
+      display: inline-block;
+      font-family: "Open Sans";
+      font-size: 13px;
+      line-height: 35px;
+      font-style: normal;
+      font-weight: normal;
+      color: #4A4A4A;
+    }
+
+  > input + label:before {
+      content: "";
+      display: inline-block;
+      margin-right: 0.625rem;
+      vertical-align: -6px;
+      width: 19px;
+      height: 19px;
+      border: 1px solid #D2D5D6;
+      border-radius: 3px;
+    }
+
+  > input:checked + label:before { 
+      z-index: 1;
+      border: 1px solid #3E9CE8;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgOSA3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xLjUgMy41bDIgMiA0LTQiIHN0cm9rZT0iIzBDQjJFMSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 0.625rem 0.625rem;
+    }
+
+  &:last-child {
+    padding-bottom: 1rem;
+  }  
 `;
 
 class Filters extends Component {
@@ -79,25 +92,29 @@ class Filters extends Component {
       <Aside>
         <Heading>Количество пересадок</Heading>
         {stops.length > 1 &&
-        <Label key={-1} htmlFor="stops_ALL">
+        <Checkbox>
           <input
-            name="ALL"
             type="checkbox"
+            name="ALL"
+            id="stops_ALL"
             checked={isAllStops}
             onChange={this.handleChange}
           />
-          Все
-        </Label>}
+          <label key={-1} htmlFor="stops_ALL">Все</label>
+        </Checkbox>}
         {stops.map(number =>
-          (<Label key={number} htmlFor={`stops_${number}`} >
+          (<Checkbox>
             <input
               name={number}
+              id={`stops_${number}`}
               type="checkbox"
               checked={this.toggleCheckbox(number)}
               onChange={this.handleChange}
             />
-            {`stops_${number}`}
-          </Label>),
+            <label key={number} htmlFor={`stops_${number}`}>
+              {`stops_${number}`}
+            </label>
+          </Checkbox>),
         )}
       </Aside>
     );

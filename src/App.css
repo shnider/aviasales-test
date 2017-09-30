@@ -5,8 +5,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-input[type=checkbox] {
-	display: none;
+label {
+  cursor: pointer;
 }
 
 .Filters {
