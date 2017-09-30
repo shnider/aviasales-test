@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Grid } from 'react-flexbox-grid';
+import styled from 'styled-components';
 
 import './App.css';
 import { sortByValue, getStops, filterTickets } from './utils';
@@ -6,8 +8,16 @@ import { sortByValue, getStops, filterTickets } from './utils';
 // ticket data from json
 import data from './ticket.json';
 
+import Header from './Components/Header';
 import Ticket from './Components/Ticket';
 import Filters from './Components/Filters';
+
+const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 64rem;
+  margin: 0 auto;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -29,10 +39,11 @@ class App extends Component {
     const stops = getStops(tickets);
     const filters = Object.keys(unchecked);
     const sortedTickets = sortByValue(tickets);
-    const result = filterTickets(sortedTickets, filters);
+    const result = isAllStops ? sortedTickets : filterTickets(sortedTickets, filters);
 
     return (
-      <div className="App">
+      <AppWrapper>
+        <Header />
         <Filters
           updateState={this.updateState}
           stops={stops}
@@ -40,7 +51,8 @@ class App extends Component {
           isAllStops={isAllStops}
         />
         <div className="Tickets">
-          {result.length === 0 && <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
+          {result.length === 0 &&
+          <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
           {result.map(ticket =>
             (<Ticket
               price={ticket.price}
@@ -50,7 +62,7 @@ class App extends Component {
             />),
           )}
         </div>
-      </div>
+      </AppWrapper>
     );
   }
 }

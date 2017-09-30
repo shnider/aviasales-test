@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "flexboxgrid2": "^7.0.0-alpha7",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-flexbox-grid": "^1.1.5",
+    "styled-components": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^4.5.0",

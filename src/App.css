@@ -1,8 +1,12 @@
-.App {
-  display: flex;
-  width: 1200px;
-  justify-content: center;
-  margin: 0 auto;
+body {
+  font-family: "Roboto";
+  background-color: #F3F7FA;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+input[type=checkbox] {
+	display: none;
 }
 
 .Filters {
