@@ -5,10 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-label {
-  cursor: pointer;
-}
-
 .Filters {
   padding: 2rem 6rem;
 }

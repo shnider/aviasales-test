@@ -23,19 +23,22 @@ const Heading = styled.h2`
 
 const Checkbox = styled.p` 
   margin: 0;
-  padding: 0rem 1rem;
+  cursor: pointer;
 
   > input { display: none; }
 
   > input + label {
-      display: inline-block;
+      display: block;
+      padding: 0rem 1rem;
+      box-sizing: border-box;
       font-family: "Open Sans";
       font-size: 13px;
       line-height: 35px;
       font-style: normal;
       font-weight: normal;
       color: #4A4A4A;
-    }
+      cursor: pointer;
+  }
 
   > input + label:before {
       content: "";
@@ -46,7 +49,7 @@ const Checkbox = styled.p`
       height: 19px;
       border: 1px solid #D2D5D6;
       border-radius: 3px;
-    }
+  }
 
   > input:checked + label:before { 
       z-index: 1;
@@ -55,11 +58,15 @@ const Checkbox = styled.p`
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 0.625rem 0.625rem;
-    }
+  }
 
   &:last-child {
-    padding-bottom: 1rem;
-  }  
+    margin-bottom: 1rem;
+  }
+
+  &:hover {
+    background-color: #F1FCFF;
+  }
 `;
 
 class Filters extends Component {
