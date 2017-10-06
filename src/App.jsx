@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'react-flexbox-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import styled from 'styled-components';
 
 import './App.css';
@@ -42,27 +42,37 @@ class App extends Component {
     const result = isAllStops ? sortedTickets : filterTickets(sortedTickets, filters);
 
     return (
+
       <AppWrapper>
         <Header />
-        <Filters
-          updateState={this.updateState}
-          stops={stops}
-          unchecked={unchecked}
-          isAllStops={isAllStops}
-        />
-        <div className="Tickets">
-          {result.length === 0 &&
-          <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
-          {result.map(ticket =>
-            (<Ticket
-              price={ticket.price}
-              origin={ticket.origin_name}
-              destination={ticket.destination_name}
-              stops={ticket.stops}
-            />),
-          )}
-        </div>
+        <Grid>
+          <Row>
+            <Col mdOffset={1} md={3}>
+              <Filters
+                updateState={this.updateState}
+                stops={stops}
+                unchecked={unchecked}
+                isAllStops={isAllStops}
+              />
+            </Col>
+            <Col md={7}>
+              <div className="Tickets">
+                {result.length === 0 &&
+                <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
+                {result.map(ticket =>
+                  (<Ticket
+                    price={ticket.price}
+                    origin={ticket.origin_name}
+                    destination={ticket.destination_name}
+                    stops={ticket.stops}
+                  />),
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       </AppWrapper>
+
     );
   }
 }

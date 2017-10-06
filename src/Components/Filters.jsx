@@ -70,7 +70,7 @@ const Checkbox = styled.p`
 `;
 
 class Filters extends Component {
-  handleChange = (e) => {
+  handleCheckbox = (e) => {
     const { unchecked, stops, isAllStops, updateState } = this.props;
     const name = e.target.name;
     if (name === 'ALL') {
@@ -85,6 +85,10 @@ class Filters extends Component {
       updateState({ unchecked: newObj, isAllStops: false });
     }
   }
+
+  // handleOnlyButtom = (e) => {
+
+  // }
 
   toggleCheckbox = (number) => {
     if (number in this.props.unchecked) {
@@ -105,7 +109,7 @@ class Filters extends Component {
             name="ALL"
             id="stops_ALL"
             checked={isAllStops}
-            onChange={this.handleChange}
+            onChange={this.handleCheckbox}
           />
           <label key={-1} htmlFor="stops_ALL">Все</label>
         </Checkbox>}
@@ -116,7 +120,7 @@ class Filters extends Component {
               id={`stops_${number}`}
               type="checkbox"
               checked={this.toggleCheckbox(number)}
-              onChange={this.handleChange}
+              onChange={this.handleCheckbox}
             />
             <label key={number} htmlFor={`stops_${number}`}>
               {`stops_${number}`}
