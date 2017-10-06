@@ -7,6 +7,7 @@ const Aside = styled.aside`
   background-color: #FFF;
   box-shadow: 0px 1px 4px rgba(91, 137, 164, 0.25);
   border-radius: 5px;
+  padding-bottom: 1rem;
 `;
 
 const Heading = styled.h2`
@@ -22,8 +23,9 @@ const Heading = styled.h2`
 `;
 
 const Checkbox = styled.p` 
+  position: relative;
   margin: 0;
-  cursor: pointer;
+  overflow: hidden;
 
   > input { display: none; }
 
@@ -60,13 +62,31 @@ const Checkbox = styled.p`
       background-size: 0.625rem 0.625rem;
   }
 
-  &:last-child {
-    margin-bottom: 1rem;
-  }
-
   &:hover {
     background-color: #F1FCFF;
   }
+
+  &:hover a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+`;
+
+const Only = styled.a`
+  position: absolute;
+  top: 0;
+  right: 15px;
+  cursor: pointer;
+  opacity: 0;
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: .6875rem;
+  line-Height: 35px;
+  color: #3E9CE8;
+  text-transform: uppercase;
+  transition: all .15s ease-out;
+  transform: translateY(1rem);
 `;
 
 class Filters extends Component {
@@ -86,9 +106,12 @@ class Filters extends Component {
     }
   }
 
-  // handleOnlyButtom = (e) => {
-
-  // }
+  handleOnlyClick = (number) => {
+    const { stops, updateState } = this.props;
+    const uncheckOther = stops.filter(stop => stop !== number);
+    const newObj = arrayToObject(uncheckOther, true);
+    updateState({ unchecked: newObj, isAllStops: false });
+  }
 
   toggleCheckbox = (number) => {
     if (number in this.props.unchecked) {
@@ -111,10 +134,10 @@ class Filters extends Component {
             checked={isAllStops}
             onChange={this.handleCheckbox}
           />
-          <label key={-1} htmlFor="stops_ALL">Все</label>
+          <label htmlFor="stops_ALL">Все</label>
         </Checkbox>}
         {stops.map(number =>
-          (<Checkbox>
+          (<Checkbox key={number}>
             <input
               name={number}
               id={`stops_${number}`}
@@ -122,9 +145,10 @@ class Filters extends Component {
               checked={this.toggleCheckbox(number)}
               onChange={this.handleCheckbox}
             />
-            <label key={number} htmlFor={`stops_${number}`}>
+            <label htmlFor={`stops_${number}`}>
               {`stops_${number}`}
             </label>
+            <Only onClick={() => this.handleOnlyClick(number)}>только</Only>
           </Checkbox>),
         )}
       </Aside>
