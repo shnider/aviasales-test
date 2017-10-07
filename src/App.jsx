@@ -13,10 +13,22 @@ import Ticket from './Components/Ticket';
 import Filters from './Components/Filters';
 
 const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 64rem;
   margin: 0 auto;
+  width: 64rem;
+`;
+
+const FilterMessage = styled.p`
+  margin: 0;
+  padding: 2rem 1rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.5px;
+  color: #4A4A4A;
+  background-color: #FFF;
+  box-shadow: 0px 1px 4px rgba(91, 137, 164, 0.25);
+  border-radius: 5px;
 `;
 
 class App extends Component {
@@ -42,7 +54,6 @@ class App extends Component {
     const result = isAllStops ? sortedTickets : filterTickets(sortedTickets, filters);
 
     return (
-
       <AppWrapper>
         <Header />
         <Grid>
@@ -58,7 +69,9 @@ class App extends Component {
             <Col md={7}>
               <div className="Tickets">
                 {result.length === 0 &&
-                <p>К сожалению, по заддынм критериям поиска не нашлось предложений</p>}
+                <FilterMessage>
+                  К сожалению, билеты по заданным фильтрам не найдены.
+                </FilterMessage>}
                 {result.map(ticket =>
                   (<Ticket
                     price={ticket.price}
@@ -72,7 +85,6 @@ class App extends Component {
           </Row>
         </Grid>
       </AppWrapper>
-
     );
   }
 }

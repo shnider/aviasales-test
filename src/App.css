@@ -5,15 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.Filters {
-  padding: 2rem 6rem;
-}
-
-.Filters label {
-  display: block;
-  padding: 0.25rem 0;
-}
-
 .Ticket {
   margin: 0 auto;
   width: 36rem;
