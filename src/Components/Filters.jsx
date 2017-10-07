@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { arrayToObject } from '../utils';
+import { arrayToObject, pluralizeStops } from '../utils';
 
 const Aside = styled.aside`
   background-color: #FFF;
@@ -36,7 +36,6 @@ const Checkbox = styled.p`
       font-family: "Open Sans";
       font-size: 13px;
       line-height: 35px;
-      font-style: normal;
       font-weight: normal;
       color: #4A4A4A;
       cursor: pointer;
@@ -76,7 +75,7 @@ const Checkbox = styled.p`
 const Only = styled.a`
   position: absolute;
   top: 0;
-  right: 15px;
+  right: 1rem;
   cursor: pointer;
   opacity: 0;
   font-family: Roboto;
@@ -122,6 +121,7 @@ class Filters extends Component {
 
   render() {
     const { stops, isAllStops } = this.props;
+
     return (
       <Aside>
         <Heading>Количество пересадок</Heading>
@@ -146,7 +146,7 @@ class Filters extends Component {
               onChange={this.handleCheckbox}
             />
             <label htmlFor={`stops_${number}`}>
-              {`stops_${number}`}
+              {pluralizeStops(number)}
             </label>
             <Only onClick={() => this.handleOnlyClick(number)}>только</Only>
           </Checkbox>),

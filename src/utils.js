@@ -19,3 +19,16 @@ export const arrayToObject = (array, value) => (
 export const filterTickets = (tickets, filters) => (
   tickets.filter(ticket => filters.indexOf(String(ticket.stops)) === -1)
 );
+
+export const pluralizeStops = (amount) => {
+  switch (true) {
+    case amount === 0:
+      return 'Без пересадок';
+    case amount === 1:
+      return '1 пересадка';
+    case amount >= 2 && amount <= 4:
+      return `${amount} пересадки`;
+    default:
+      return `${amount} пересадок`;
+  }
+};
