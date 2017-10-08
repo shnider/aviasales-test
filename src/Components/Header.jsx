@@ -3,14 +3,19 @@ import styled from 'styled-components';
 
 import logo from '../img/Logo.svg';
 
-const Logo = styled.img`
-  width: 3.75rem;
-  padding: 3rem 30rem;
+const Link = styled.a`
+  display: block;
+  margin: 3rem 30rem;
 `;
 
+const Logo = styled.img`
+  width: 3.75rem;
+`;
 
 export default () => (
   <header>
-    <Logo src={logo} alt="mainLogo" />
+    <Link href="/">
+      <Logo src={logo} alt="mainLogo" />
+    </Link>
   </header>
 );

@@ -1,0 +1,14 @@
+<svg width="14" height="14" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ic_airplanemode_active_black_24px</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1670 3488)">
+<g id="ic_airplanemode_active_black_24px">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="matrix(-1.83853e-16 1 -1 -1.83541e-16 1683.1 -3487.76)" fill="#D2D5D6"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 13.0807 9.16431L 13.0807 7.85512L 7.57306 4.58216L 7.57306 0.98189C 7.57306 0.438578 7.11179 0 6.54037 0C 5.96895 0 5.50768 0.438578 5.50768 0.98189L 5.50768 4.58216L 0 7.85512L 0 9.16431L 5.50768 7.52783L 5.50768 11.1281L 4.13076 12.11L 4.13076 13.0919L 6.54037 12.4373L 8.94998 13.0919L 8.94998 12.11L 7.57306 11.1281L 7.57306 7.52783L 13.0807 9.16431Z"/>
+</defs>
+</svg>

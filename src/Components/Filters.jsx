@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import check from '../img/Check.svg';
 import { arrayToObject, pluralizeStops } from '../utils';
 
 const Aside = styled.aside`
@@ -26,6 +27,7 @@ const Checkbox = styled.p`
   position: relative;
   margin: 0;
   overflow: hidden;
+  
 
   > input { display: none; }
 
@@ -50,12 +52,13 @@ const Checkbox = styled.p`
       height: 19px;
       border: 1px solid #D2D5D6;
       border-radius: 3px;
+      transition: all .15s ease;
   }
 
   > input:checked + label:before { 
       z-index: 1;
       border: 1px solid #3E9CE8;
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgOSA3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xLjUgMy41bDIgMiA0LTQiIHN0cm9rZT0iIzBDQjJFMSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=);
+      background-image: url(${check});
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 0.625rem 0.625rem;

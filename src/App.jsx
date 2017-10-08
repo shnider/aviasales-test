@@ -17,6 +17,11 @@ const AppWrapper = styled.div`
   width: 64rem;
 `;
 
+const SearchResult = styled.div`
+  padding-bottom: 7rem;
+`;
+
+
 const FilterMessage = styled.p`
   margin: 0;
   padding: 2rem 1rem;
@@ -67,7 +72,7 @@ class App extends Component {
               />
             </Col>
             <Col md={7}>
-              <div className="Tickets">
+              <SearchResult>
                 {result.length === 0 &&
                 <FilterMessage>
                   К сожалению, билеты по заданным фильтрам не найдены.
@@ -80,7 +85,7 @@ class App extends Component {
                     stops={ticket.stops}
                   />),
                 )}
-              </div>
+              </SearchResult>
             </Col>
           </Row>
         </Grid>

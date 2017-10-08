@@ -4,22 +4,3 @@ body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
 }
-
-.Ticket {
-  margin: 0 auto;
-  width: 36rem;
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 2px solid #222;
-  margin-bottom: 1rem;
-}
-
-.Ticket :first-child {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.Tickets {
-  display: block;
-}
