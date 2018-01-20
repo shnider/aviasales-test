@@ -1,34 +1,6 @@
-.App {
-  display: flex;
-  width: 1200px;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.Filters {
-  padding: 2rem 6rem;
-}
-
-.Filters label {
-  display: block;
-  padding: 0.25rem 0;
-}
-
-.Ticket {
-  margin: 0 auto;
-  width: 36rem;
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 2px solid #222;
-  margin-bottom: 1rem;
-}
-
-.Ticket :first-child {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.Tickets {
-  display: block;
+body {
+  font-family: "Roboto";
+  background-color: #F3F7FA;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased;
 }

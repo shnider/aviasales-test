@@ -1,9 +1,98 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import { arrayToObject } from '../utils';
+import check from '../img/Check.svg';
+import { arrayToObject, pluralizeStops } from '../utils';
+
+const Aside = styled.aside`
+  background-color: #FFF;
+  box-shadow: 0px 1px 4px rgba(91, 137, 164, 0.25);
+  border-radius: 5px;
+  padding-bottom: 1rem;
+`;
+
+const Heading = styled.h2`
+  margin: 0;
+  padding: 1rem 3.5rem 0.5rem 1rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #4A4A4A;
+`;
+
+const Checkbox = styled.p` 
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  
+
+  > input { display: none; }
+
+  > input + label {
+      display: block;
+      padding: 0rem 1rem;
+      box-sizing: border-box;
+      font-family: "Open Sans";
+      font-size: 13px;
+      line-height: 35px;
+      font-weight: normal;
+      color: #4A4A4A;
+      cursor: pointer;
+  }
+
+  > input + label:before {
+      content: "";
+      display: inline-block;
+      margin-right: 0.625rem;
+      vertical-align: -6px;
+      width: 19px;
+      height: 19px;
+      border: 1px solid #D2D5D6;
+      border-radius: 3px;
+      transition: all .15s ease;
+  }
+
+  > input:checked + label:before { 
+      z-index: 1;
+      border: 1px solid #3E9CE8;
+      background-image: url(${check});
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 0.625rem 0.625rem;
+  }
+
+  &:hover {
+    background-color: #F1FCFF;
+  }
+
+  &:hover a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+`;
+
+const Only = styled.a`
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: .6875rem;
+  line-Height: 35px;
+  color: #3E9CE8;
+  text-transform: uppercase;
+  transition: all .15s ease-out;
+  transform: translateY(1rem);
+`;
 
 class Filters extends Component {
-  handleChange = (e) => {
+  handleCheckbox = (e) => {
     const { unchecked, stops, isAllStops, updateState } = this.props;
     const name = e.target.name;
     if (name === 'ALL') {
@@ -19,6 +108,13 @@ class Filters extends Component {
     }
   }
 
+  handleOnlyClick = (number) => {
+    const { stops, updateState } = this.props;
+    const uncheckOther = stops.filter(stop => stop !== number);
+    const newObj = arrayToObject(uncheckOther, true);
+    updateState({ unchecked: newObj, isAllStops: false });
+  }
+
   toggleCheckbox = (number) => {
     if (number in this.props.unchecked) {
       return false;
@@ -28,29 +124,37 @@ class Filters extends Component {
 
   render() {
     const { stops, isAllStops } = this.props;
+
     return (
-      <form className="Filters">
-        {stops.length > 1 && <label key={-1} htmlFor="stops_ALL">
+      <Aside>
+        <Heading>Количество пересадок</Heading>
+        {stops.length > 1 &&
+        <Checkbox>
           <input
-            name="ALL"
             type="checkbox"
+            name="ALL"
+            id="stops_ALL"
             checked={isAllStops}
-            onChange={this.handleChange}
+            onChange={this.handleCheckbox}
           />
-          Все
-        </label>}
+          <label htmlFor="stops_ALL">Все</label>
+        </Checkbox>}
         {stops.map(number =>
-          (<label key={number} htmlFor={`stops_${number}`} >
+          (<Checkbox key={number}>
             <input
               name={number}
+              id={`stops_${number}`}
               type="checkbox"
               checked={this.toggleCheckbox(number)}
-              onChange={this.handleChange}
+              onChange={this.handleCheckbox}
             />
-            {`stops_${number}`}
-          </label>),
+            <label htmlFor={`stops_${number}`}>
+              {pluralizeStops(number)}
+            </label>
+            <Only onClick={() => this.handleOnlyClick(number)}>только</Only>
+          </Checkbox>),
         )}
-      </form>
+      </Aside>
     );
   }
 }
